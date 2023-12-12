@@ -10,11 +10,7 @@ $(document).ready(function (){
   
   // 2.) Add Event to Calendar by storing it locally
   function addToCalendar(event){
-    var description = $(".description")
-    localStorage.setItem("description", description);
-    localStorage.getItem(description);
-    console.log(description);
-    
+  
   };
   // 3.) Change class of divs comparing them to the current hour. 
   function changeContainer(){
@@ -27,12 +23,22 @@ $(document).ready(function (){
 
     console.log(test);
 
-    if (hour !== 6){
-       $(".time-block").removeClass("present");
-       $(".time-block").removeClass("future");
-       $(".time-block").addClass("past")
-    }
-
+   $(".time-block").each(function(){
+     var hourEl = $(this).attr("data-hour");
+     if (hourEl < hour){
+      $(".time-block").removeClass("past");
+      $(".time-block").removeClass("present");
+      $(".time-block").addClass("future");
+     } else if (hourEl === hour){
+      $(".time-block").removeClass("past");
+      $(".time-block").removeClass("future");
+      $(".time-block").addClass("present");
+     } else if(hourEl > hour) {
+      $(".time-block").removeClass("future");
+      $(".time-block").removeClass("present");
+      $(".time-block").addClass("past");
+     }
+   }) 
   };
 
   $(function runPlanner() {
