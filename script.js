@@ -30,9 +30,6 @@ $(document).ready(function (){
 
      var hourEl = parseInt($(this).attr("data-hour"));
 
-     console.log(hourEl);
-     console.log(hour);
-
      $(this).removeClass("future");
      $(this).removeClass("present");
      $(this).removeClass("past");
@@ -75,10 +72,13 @@ $(document).ready(function (){
   });
 
   $(".saveBtn").each(function(){
+
+    console.log("hello");
+
     $(this).on("click", function(){
-
-      console.log("hello");
-
+      $(".description").each(function(){
+        console.log("hello");
+      })
     })
   })
 });
