@@ -1,42 +1,52 @@
 0// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
+
 $(document).ready(function (){
+
   //1.) Displays Current Date
   function displayDate() {
+
     var today = dayjs();
+
     $("#currentDay").text(today.format("MMM D, YYYY h:mm A"));
+    
   };
   
   // 2.) Add Event to Calendar by storing it locally
-  function addToCalendar(event){
-  
-  };
+  function addToCalendar(){
+    var description = $("#description");
+   
+  }
+
+
+
   // 3.) Change class of divs comparing them to the current hour. 
   function changeContainer(){
 
-    var hour = dayjs().format("H");
+    var hour = parseInt(dayjs().format("H"));
 
-    console.log(hour);
+    $(".time-block").each(function(){
 
-    var test = $(".currentHour").text();
+     var hourEl = parseInt($(this).attr("data-hour"));
 
-    console.log(test);
+     console.log(hourEl);
+     console.log(hour);
 
-   $(".time-block").each(function(){
-     var hourEl = $(this).attr("data-hour");
-     if (hourEl < hour){
-      $(".time-block").removeClass("past");
-      $(".time-block").removeClass("present");
-      $(".time-block").addClass("future");
-     } else if (hourEl === hour){
-      $(".time-block").removeClass("past");
-      $(".time-block").removeClass("future");
-      $(".time-block").addClass("present");
-     } else if(hourEl > hour) {
-      $(".time-block").removeClass("future");
-      $(".time-block").removeClass("present");
-      $(".time-block").addClass("past");
+     $(this).removeClass("future");
+     $(this).removeClass("present");
+     $(this).removeClass("past");
+
+     if(hourEl < hour){
+      $(this).addClass("past");
+     } 
+
+     else if(hourEl === hour){
+      $(this).addClass("present"); 
+     } 
+     
+     else {
+      $(this).addClass("future");
      }
    }) 
   };
@@ -64,10 +74,13 @@ $(document).ready(function (){
     // TODO: Add code to display the current date in the header of the page.
   });
 
+  $(".saveBtn").each(function(){
+    $(this).on("click", function(){
 
-  $(".saveBtn").on("click", function(){
-    addToCalendar();
-  });
+      console.log("hello");
+
+    })
+  })
 });
 
 
