@@ -76,9 +76,11 @@ $(document).ready(function (){
     console.log("hello");
 
     $(this).on("click", function(){
-      $(".description").each(function(){
-        console.log("hello");
-      })
+      console.log("I was pressed")
+      var timeStamp = $(this).attr("data-hour");
+      var description = $(".description").val;
+      localStorage.setItem(timeStamp, description);
+      console.log(description.textContent);
     })
   })
 });
